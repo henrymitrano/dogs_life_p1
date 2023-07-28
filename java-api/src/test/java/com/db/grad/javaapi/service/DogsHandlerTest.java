@@ -32,4 +32,58 @@ public class DogsHandlerTest {
         //assert
         assertEquals(expectedResult, actualResult);
     }
+
+    @Test
+    public void get_dog_from_name(){
+        DogHandler cut = new DogHandler(itsDogRepo);
+        Dog dog1 = new Dog();
+        dog1.setName("Willie");
+        cut.addDog(dog1);
+
+        Dog result = cut.getDogByName("Willie");
+        assertEquals(dog1, result);
+    }
+
+    @Test
+    public void get_dog_from_id(){
+        DogHandler cut = new DogHandler(itsDogRepo);
+        Dog dog1 = new Dog();
+        dog1.setName("Willie");
+        cut.addDog(dog1);
+
+        dog1.setId(001);
+        long expected = 001;
+        Dog resultDog = cut.getDogById(dog1.getId());
+        assertEquals(expected, resultDog.getId());
+
+    }
+
+    @Test
+    public void verify_update_on_dog_details(){
+        itsDogRepo.deleteAll();
+        DogHandler cut = new DogHandler(itsDogRepo);
+        Dog dog1 = new Dog();
+        dog1.setName("Willie");
+        cut.addDog(dog1);
+
+        long actual = cut.updateDogDetails(dog1);
+        long expected = 001;
+        assertEquals(actual, expected);
+
+    }
+
+    @Test
+    public void verify_delete_on_repo(){
+        itsDogRepo.deleteAll();
+        DogHandler cut = new DogHandler(itsDogRepo);
+        Dog dog1 = new Dog();
+        dog1.setName("Willie");
+        cut.addDog(dog1);
+
+        boolean result = cut.removeDog(dog1.getId());
+        boolean expected = true;
+
+        assertEquals(result, expected);
+    }
+
 }
