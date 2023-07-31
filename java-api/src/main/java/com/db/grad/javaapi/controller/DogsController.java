@@ -37,7 +37,7 @@ public class DogsController {
     @GetMapping("/dogs/number")
     public Long getNumOfDogs() { return dogsService.getNoOfDogs();}
 
-   
+
 
     @GetMapping("/dogs/{id}")
     public ResponseEntity < Dog > getEmployeeById(@PathVariable(value = "id") Long id)
