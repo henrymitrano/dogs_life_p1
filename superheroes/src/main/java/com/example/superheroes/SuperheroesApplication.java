@@ -18,6 +18,7 @@ public class SuperheroesApplication {
 	HeroService heroService;
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(SuperheroesApplication.class, args);
 	}
 }
