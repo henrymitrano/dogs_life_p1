@@ -7,14 +7,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
 @Service
-public class DogHandler implements IDogsService
+public class DogService implements IDogsService
 {
     private DogsRepository itsDogsRepo;
-
     @Autowired
-    public DogHandler( DogsRepository dogRepo )
+    public DogService(DogsRepository dogRepo )
     {
         itsDogsRepo = dogRepo;
     }
