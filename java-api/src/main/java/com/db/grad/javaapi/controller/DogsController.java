@@ -29,8 +29,15 @@ public class DogsController {
         return dogsService.getAllDogs();
     }
 
-    @GetMapping("/dogs")
+    @GetMapping("/dogs/{name}")
+    public Dog getDogByName(@PathVariable(value = "name") String name) {
+        return dogsService.getDogByName(name);
+    }
+
+    @GetMapping("/dogs/number")
     public Long getNumOfDogs() { return dogsService.getNoOfDogs();}
+
+   
 
     @GetMapping("/dogs/{id}")
     public ResponseEntity < Dog > getEmployeeById(@PathVariable(value = "id") Long id)
