@@ -2,22 +2,35 @@ import React, { useState } from 'react'
 import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button'
+import { saveHero } from '../services/hero-service';
+import { useNavigate } from 'react-router-dom';
 
 const HeroForm = () => {
     const [alias, setAlias] = useState('');
     const [name, setName] = useState('');
     const [ability, setAbility] = useState('');
     const [teamID, setTeamID] = useState(0);
+    const navigate = useNavigate();
 
     const handleSubmit =(event)=>{
-      event.preventDefault();
-      let hero = {};
-      hero.alias = alias;
-      hero.name = name;
-      hero.ability = ability;
-      hero.teamID = teamID;
-      console.log(hero);
-    }
+        event.preventDefault();
+        let hero = {};
+        hero.alias = alias;
+        hero.name = name;
+        hero.ability = ability;
+        hero.teamID = teamID;
+        saveHero(hero)
+          .then(res => {
+             setAbility('');
+             setAlias('');
+             setName('');
+             setTeamId(0);
+             navigate("/")
+             })
+           .catch(err=>{
+              console.log(err);
+             })   
+       }
 
     let hero = {};
     hero.alias = alias;
